@@ -1,183 +1,92 @@
 # Black-Scholes-Monte-Carlo-Simulation-for-Option-Pricing
 This project implements the Black-Scholes model and Monte Carlo simulation for pricing European Call and Put options. It includes an interactive Jupyter Notebook with a GUI to input parameters, run simulations, and visualize stock price paths and option price convergence with confidence intervals.
 
-Overview
-This project implements two methods for pricing European call options:
+## Features
+- **Black-Scholes Model**: Calculates the price of European call and put options.
+- **Monte Carlo Simulation**: Simulates stock price paths and estimates the option price with confidence intervals.
+- **Interactive GUI**: Input key parameters like stock price, strike price, volatility, and more.
+- **Visualizations**: Plotly-based visualizations of stock price paths and convergence of the Monte Carlo simulation.
 
-Black-Scholes Analytical Model: A closed-form solution for option pricing.
-Monte Carlo Simulation: A numerical approach to estimate option prices based on simulated stock price paths.
-The project is implemented in a Jupyter Notebook and includes an interactive graphical user interface (GUI), built using ipywidgets, allowing users to input parameters and visualize the results.
+## Theoretical Background
+### Black-Scholes Model
+The Black-Scholes model calculates the price of European options based on:
+- Stock price  $S$ 
+- Strike price  $K$ 
+- Time to maturity $T$
+- Risk-free interest rate $r$
+- Volatility $\sigma$
 
-Features
-Black-Scholes Model: Calculates the price of European call options using the analytical Black-Scholes formula.
-Monte Carlo Simulation: Simulates stock price paths and estimates the option price with confidence intervals.
-Interactive GUI: Users can input key parameters such as stock price, strike price, volatility, risk-free rate, and more.
-Visualizations: Plotly-based visualizations to show stock price paths and the convergence of the Monte Carlo simulation.
-Theoretical Background
-Black-Scholes Model
-The Black-Scholes model provides a closed-form solution to calculate the price of European call options based on:
-
-Stock price (S)
-Strike price (K)
-Time to maturity (T)
-Risk-free interest rate (r)
-Volatility (σ)
 The option price is given by:
 
-𝐶
-(
-𝑆
-,
-𝐾
-,
-𝑇
-,
-𝑟
-,
-𝜎
-)
-=
-𝑆
-0
-𝑁
-(
-𝑑
-1
-)
-−
-𝐾
-𝑒
-−
-𝑟
-𝑇
-𝑁
-(
-𝑑
-2
-)
-C(S,K,T,r,σ)=S 
-0
-​
- N(d 
-1
-​
- )−Ke 
-−rT
- N(d 
-2
-​
- )
-Where 
-𝑑
-1
-d 
-1
-​
-  and 
-𝑑
-2
-d 
-2
-​
-  are defined as:
+$$
+C(S, K, T, r, \sigma) = S N(d_1) - K e^{-rT} N(d_2)
+$$
 
-𝑑
-1
-=
-ln
-⁡
-(
-𝑆
-/
-𝐾
-)
-+
-(
-𝑟
-+
-0.5
-𝜎
-2
-)
-𝑇
-𝜎
-𝑇
-,
-𝑑
-2
-=
-𝑑
-1
-−
-𝜎
-𝑇
-d 
-1
-​
- = 
-σ 
-T
-​
- 
-ln(S/K)+(r+0.5σ 
-2
- )T
-​
- ,d 
-2
-​
- =d 
-1
-​
- −σ 
-T
-​
- 
-Monte Carlo Simulation
-Monte Carlo simulation estimates the option price by simulating random stock price paths and calculating the average payoff, discounted back to the present. Confidence intervals for the simulation are provided based on standard error calculations.
 
-Project Structure
-black_scholes_call: Calculates the European call option price using the Black-Scholes formula.
-monte_carlo_call: Simulates stock price paths using the Monte Carlo method and estimates the option price with confidence intervals.
-GUI Interface: Users can interact with widgets to input parameters and run the simulations.
-Installation
+Where:
+
+$$
+d_1 = \frac{\ln(S/K) + (r + 0.5 \sigma^2) T}{\sigma \sqrt{T}}, \quad d_2 = d_1 - \sigma \sqrt{T}
+$$
+
+For put options, the price is:
+
+$$
+P(S, K, T, r, \sigma) = K e^{-rT} N(-d_2) - S N(-d_1)
+$$
+
+### Monte Carlo Simulation
+Monte Carlo simulation estimates the option price by simulating random stock price paths and calculating the average payoff:
+
+$$
+\text{Payoff} = \max(S_T - K, 0) \quad \text{(for call option)}
+$$
+
+$$
+\text{Payoff} = \max(K - S_T, 0) \quad \text{(for put option)}
+$$
+
+Where $S_T$ is the stock price at maturity.
+
+
+### Put-Call Parity
+Put-call parity is a financial principle that defines the relationship between the price of European call and put options with the same strike price and Time to maturity. It is expressed as:
+
+$$
+C + K e^{-rT} = P + S
+$$
+
+
+## Project Structure
+- `black_scholes`: Calculates option prices using the Black-Scholes formula.
+- `monte_carlo`: Simulates stock price paths and estimates option prices.
+- `check_put_call_parity`: Validates put-call parity.
+- **GUI Interface**: Interactive elements for user input and output display.
+
+## Installation
 To run the project, follow these steps:
 
-Clone the repository:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   
+2. Install dependencies
+   ```bash
+   pip install numpy pandas plotly scipy ipywidgets ipython
 
-bash
-Copier le code
-git clone https://github.com/your-username/your-repo-name.git
-Install required dependencies:
 
-bash
-Copier le code
-pip install -r requirements.txt
-Launch Jupyter Notebook:
+3. Open the notebook file and interact with the GUI
 
-bash
-Copier le code
-jupyter notebook
-Open the notebook file and interact with the GUI.
 
-Dependencies
-numpy
-pandas
-plotly
-scipy
-ipywidgets
-IPython
-Install these dependencies via pip:
+## Example
 
-bash
-Copier le code
-pip install numpy pandas plotly scipy ipywidgets
-Usage
-Once the notebook is launched:
+Here’s a visualization of the graphical interface :
 
-Enter the parameters for the option pricing (stock price, strike price, volatility, etc.).
-Run the simulation to get the Black-Scholes and Monte Carlo estimated option prices.
-Visualize the stock price paths and the convergence of the Monte Carlo estimate.
-Example
-Here’s a sample visualization generated by the notebook:
+<img width="1325" alt="Screenshot 2024-09-23 at 14 29 52" src="https://github.com/user-attachments/assets/b53f2b66-4b32-41f8-b92e-6479a6820354">
+
+Here’s a sample visualization of the resulting plots :
+
+![newplot](https://github.com/user-attachments/assets/f475eebf-08cf-4ae1-8d1b-7fa65bc0d72d)
+
+
 
