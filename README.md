@@ -10,7 +10,7 @@ This project implements the Black-Scholes model and Monte Carlo simulation for p
 ## Theoretical Background
 ### Black-Scholes Model
 The Black-Scholes model calculates the price of European options based on:
-- Stock price  $S$ 
+- Spot price  $S$ 
 - Strike price  $K$ 
 - Time to maturity $T$
 - Risk-free interest rate $r$
