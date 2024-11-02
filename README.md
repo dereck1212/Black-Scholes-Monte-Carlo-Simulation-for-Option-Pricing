@@ -68,7 +68,7 @@ To run the project, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone  https://github.com/dereck1212/Black-Scholes-Monte-Carlo-Simulation-for-Option-Pricing.git
    
 2. Install dependencies
    ```bash
